@@ -3,7 +3,7 @@
         <div 
         @click="() => changeRoute(item)" 
         v-for="(item, index) in items"
-        :class="{'menu-divider': index}"
+        :class="{'menu-divider': index, 'menu-selected': GET_SELECTED_MENU === item.path}"
         :key="index" 
         class="menu-item">
             {{ item.label }}
@@ -12,8 +12,14 @@
 </template>
 
 <script>
+    import { mapGetters, mapMutations } from 'vuex'
     export default {
         name: 'Menu',
+        computed: {
+            ...mapGetters([
+                'GET_SELECTED_MENU'
+            ])
+        },
         props: {
             items: {
                 type: Array,
@@ -21,7 +27,11 @@
             }
         },
         methods: {
+            ...mapMutations([
+                'SET_SELECTED_MENU'
+            ]),
             changeRoute({ path }) {
+                this.SET_SELECTED_MENU(path)
                 this.$router.push(path)
             }
         }
@@ -38,9 +48,13 @@
             font-weight: 400;
             text-transform: uppercase;
             padding: 18px;
-            transition: all .3s;
+            transition: background-color .3s;
             &.menu-divider {
                 border-top: 1px solid #D4D9E3;
+            }
+            &.menu-selected {
+                background-color: #FAFBFC;
+                font-weight: 500;
             }
             &:hover {
                 background-color: #FAFBFC;
