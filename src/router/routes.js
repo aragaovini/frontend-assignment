@@ -1,5 +1,6 @@
 import CompanyData from 'Pages/CompanyData.vue'
 import CompanyPage from 'Pages/CompanyPage.vue'
+import PageNotFound from 'Pages/PageNotFound.vue'
 
 const routes = [
     {
@@ -11,7 +12,12 @@ const routes = [
         path: '/company-page',
         name: 'Company Page',
         component: CompanyPage
-    }
+	},
+	{
+		path: '*',
+		name: 'Page not found',
+		component: PageNotFound
+	}
 ]
 
 export default routes
