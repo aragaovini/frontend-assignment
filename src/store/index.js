@@ -6,7 +6,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     strict: true,
     state: {
-        selectedMenu: '/'
+        selectedMenu: {
+            label: 'Company data',
+            path: '/'
+        }
     },
     getters: {
         GET_SELECTED_MENU: state => state.selectedMenu

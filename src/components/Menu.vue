@@ -3,7 +3,7 @@
         <div 
         @click="() => changeRoute(item)" 
         v-for="(item, index) in items"
-        :class="{'menu-divider': index, 'menu-selected': GET_SELECTED_MENU === item.path}"
+        :class="{'menu-divider': index, 'menu-selected': GET_SELECTED_MENU.path === item.path}"
         :key="index" 
         class="menu-item">
             {{ item.label }}
@@ -30,9 +30,9 @@
             ...mapMutations([
                 'SET_SELECTED_MENU'
             ]),
-            changeRoute({ path }) {
-                this.SET_SELECTED_MENU(path)
-                this.$router.push(path)
+            changeRoute(item) {
+                this.SET_SELECTED_MENU(item)
+                this.$router.push(item.path)
             }
         }
     }
