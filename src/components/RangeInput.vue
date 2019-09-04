@@ -1,11 +1,12 @@
 <template>
     <div class="input-container">
         <label>{{ label }}</label>
-        <div class="inputs-container">
-            <Input currency transparent v-model="firstValue"/>
+        <div class="inputs-container" :class="{ 'error-input': errorMessage }">
+            <Input @onBeforeMask="(value) => handleValues('firstValue', value)" currency transparent/>
             <div class="inputs-divider">{{ divider }}</div>
-            <Input currency transparent v-model="lastValue"/>
+            <Input @onBeforeMask="(value) => handleValues('lastValue', value)" currency transparent/>
         </div>
+        <div class="error-container">{{errorMessage}}</div>
     </div>
 </template>
 
@@ -14,8 +15,11 @@
     export default {
         name: 'RangeInput',
         data: () => ({
-            firstValue: '',
-            lastValue: ''
+            values: {
+                firstValue: '',
+                lastValue: ''
+            },
+            errorMessage: ''
         }),
         components: {
             Input
@@ -28,6 +32,16 @@
             divider: {
                 type: String,
                 default: '-'
+            }
+        },
+        methods: {
+            handleValues(field, value) {
+                this.values[field] = Number(value)
+                if (this.values.firstValue > this.values.lastValue) {
+                    this.errorMessage = 'First field is greater than the last one.'
+                } else {
+                    this.errorMessage = ''
+                }
             }
         }
     }

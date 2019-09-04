@@ -12,6 +12,10 @@ body {
 .input-container {
     display: flex;
     flex-direction: column;
+    position: relative;
+    .error-input {
+        border: 1px solid #811717 !important;
+    }
     label {
         color: #B1B1B1;
         font-weight: 500;
@@ -31,5 +35,12 @@ body {
         &:focus {
             border: 1px solid #394783;
         }
+    }
+    .error-container {
+        color: rgb(129, 23, 23);
+        color: #811717;
+        font-size: 12px;
+        position: absolute;
+        bottom: -18px;
     }
 }

@@ -1,14 +1,16 @@
 <template>
-    <div class="input-container" :class="{'transparent-input': transparent}">
+    <div class="input-container" :class="{ 'transparent-input': transparent }">
         <label v-if="label">{{ label }}</label>
         <input 
             @focus="handleFocus" 
             @blur="validate" 
             v-bind="$attrs" 
             v-model="model"
+            :class="{ 'error-input': errorMessage }"
             ref="input"
             @keypress="handleKeyPress"
             @input="$emit('input', $event.target.value)" />
+        <div class="error-container">{{errorMessage}}</div>
     </div>
 </template>
 
@@ -16,7 +18,8 @@
     export default {
         name: 'Input',
         data: () => ({
-            model: ''
+            model: '',
+            errorMessage: ''
         }),
         props: {
             label: {
@@ -53,10 +56,11 @@
 
                     const formattedValue = formatter.format(this.model)
                     if (formattedValue === '$NaN') {
+                        this.$emit('onBeforeMask', 0)
                         this.model = '$ 0.00'
                         return
                     }
-
+                    this.$emit('onBeforeMask', this.model)
                     this.model = formatter.format(this.model)
                     this.$emit('input', this.model)
                 }
@@ -74,7 +78,9 @@
                 if (currency) this.handleCurrencyBlur()
 
                 if (required && !model) {
-                    this.$emit('onError', 'Required field')
+                    this.errorMessage = 'Required field'
+                } else {
+                    this.errorMessage = ''
                 }
             }
         }
