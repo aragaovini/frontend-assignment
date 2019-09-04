@@ -4,7 +4,7 @@
         <Input required label="Company Name" type="text" v-model="companyName"/>
         <Input currency label="Company Spend" v-model="companySpend"/>
         <RangeInput label="Company Spend Ability" v-model="companySpendAbility"/>
-        <Textarea @click.native="openModal" label="Notes" type="text" v-model="notes"/>
+        <Textarea @onFocus="openModal" label="Notes" type="text" v-model="notes"/>
         <Modal :open="mustOpenModal" @closeModal="closeModal">
             <h1>Additional Notes</h1>
             <Textarea @click.native="openModal" type="text" v-model="notes"/>

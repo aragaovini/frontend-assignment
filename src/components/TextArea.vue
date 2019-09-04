@@ -1,7 +1,7 @@
 <template>
     <div class="input-container">
         <label>{{ label }}</label>
-        <textarea rows="7" v-bind="$attrs" @input="$emit('input', $event.target.value)" />
+        <textarea @focus="$emit('onFocus')" rows="7" v-bind="$attrs" @input="$emit('input', $event.target.value)" />
     </div>
 </template>
 

@@ -42,14 +42,13 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .app {
         display: flex;
         flex-direction: column;
     }
 
     .content-container {
-        padding: 28px;
         display: grid;
         grid-template-columns: 3fr 9fr;
         grid-gap: 28px;
@@ -57,5 +56,12 @@
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
+        padding: 0px 28px;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        @media (max-width: 950px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+        }
     }
 </style>
