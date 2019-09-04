@@ -4,8 +4,14 @@
         <Input required label="Company Name" type="text" v-model="companyName"/>
         <Input currency label="Company Spend" v-model="companySpend"/>
         <RangeInput label="Company Spend Ability" v-model="companySpendAbility"/>
-        <Textarea label="Notes" type="text" v-model="notes"/>
-
+        <Textarea @click.native="openModal" label="Notes" type="text" v-model="notes"/>
+        <Modal :open="mustOpenModal" @closeModal="closeModal">
+            <h1>Additional Notes</h1>
+            <Textarea @click.native="openModal" type="text" v-model="notes"/>
+            <div class="buttons-container">
+                <Button @click.native="closeModal">save</Button>
+            </div>
+        </modal>
     </div>
 </template>
 
@@ -13,20 +19,33 @@
     import Input from 'Components/Input.vue'
     import RangeInput from 'Components/RangeInput.vue'
     import Textarea from 'Components/Textarea.vue'
+    import Modal from 'Components/Modal.vue'
+    import Button from 'Components/Button.vue'
 
     export default {
         name: 'CompanyData',
         components: {
             Input,
             RangeInput,
-            Textarea
+            Textarea,
+            Modal,
+            Button
         },
         data: () => ({
             companyName: '',
             companySpend: 0,
             companySpendAbility: '',
-            notes: ''
-        })
+            notes: '',
+            mustOpenModal: false
+        }),
+        methods: {
+            openModal() {
+                this.mustOpenModal = true
+            },
+            closeModal() {
+                this.mustOpenModal = false
+            }
+        }
     }
 </script>
 
@@ -41,6 +60,10 @@
         }
         .input-container, .range-input-container {
             margin-bottom: 28px;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: flex-end;
         }
     }
 </style>
