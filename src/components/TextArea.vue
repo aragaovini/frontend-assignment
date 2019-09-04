@@ -1,5 +1,5 @@
 <template>
-    <div class="text-area-box">
+    <div class="input-container">
         <label>{{ label }}</label>
         <textarea v-bind="$attrs" @input="$emit('input', $event.target.value)" />
     </div>
@@ -18,17 +18,7 @@
 </script>
 
 <style scoped lang="scss">
-    .text-area-box {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 28px;
-        label {
-            color: #B1B1B1;
-            font-weight: 500;
-            font-size: 12px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
+    .input-container {
         textarea {
             padding: 6px;
             min-height: 24px;

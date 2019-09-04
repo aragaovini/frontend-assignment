@@ -1,9 +1,9 @@
 <template>
     <div class="company-data-container">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <Input label="Company Name" type="text" v-model="companyName"/>
-        <Input label="Company Spend" type="number" v-model="companySpend"/>
-        <Input label="Company Spend Ability" type="text" v-model="companySpendAbility"/>
+        <Input required label="Company Name" type="text" v-model="companyName"/>
+        <Input currency label="Company Spend" v-model="companySpend"/>
+        <RangeInput label="Company Spend Ability" v-model="companySpendAbility"/>
         <Textarea label="Notes" type="text" v-model="notes"/>
 
     </div>
@@ -11,12 +11,14 @@
 
 <script>
     import Input from 'Components/Input.vue'
+    import RangeInput from 'Components/RangeInput.vue'
     import Textarea from 'Components/Textarea.vue'
 
     export default {
         name: 'CompanyData',
         components: {
             Input,
+            RangeInput,
             Textarea
         },
         data: () => ({
@@ -36,6 +38,9 @@
         padding: 28px;
         p {
             margin: 0px 0px 28px 0px;
+        }
+        .input-container, .range-input-container {
+            margin-bottom: 28px;
         }
     }
 </style>
