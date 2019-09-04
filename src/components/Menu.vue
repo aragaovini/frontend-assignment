@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex'
+    import { mapGetters } from 'vuex'
     export default {
         name: 'Menu',
         computed: {
@@ -27,11 +27,7 @@
             }
         },
         methods: {
-            ...mapMutations([
-                'SET_SELECTED_MENU'
-            ]),
             changeRoute(item) {
-                this.SET_SELECTED_MENU(item)
                 this.$router.push(item.path)
             }
         }
