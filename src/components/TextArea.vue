@@ -10,8 +10,7 @@
         name: 'TextArea',
         props: {
             label: {
-                type: String,
-                required: true
+                type: String
             }
         }
     }
